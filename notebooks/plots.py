@@ -14,23 +14,9 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import MaxNLocator
 
-matplotlib.rc("text", usetex=True)
-matplotlib.rcParams["text.latex.preamble"] = [r"\usepackage{amsmath}"]
-
 import mpmath
 
 mpmath.mp.dps = 53
-
-matplotlib.rcParams.update(
-    {
-        "font.size": 22,
-        "pgf.texsystem": "pdflatex",
-        "font.family": "serif",
-        "font.serif": "Times",
-        "text.usetex": True,
-        "pgf.rcfonts": False,
-    }
-)
 
 # Vectorize mpmath functions:
 
