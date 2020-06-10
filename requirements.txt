@@ -1,8 +1,0 @@
-jupyterlab
-numpy
-matplotlib
-mpmath
-ipywidgets
-IPython
-jupyterlab_latex
-voila

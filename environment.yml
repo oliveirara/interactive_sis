@@ -1,0 +1,12 @@
+channels:
+    - conda-forge
+dependencies:
+    - matplotlib
+    - jupyterlab>=0.35
+    - numpy
+    - mpmath
+    - voila
+    - ipywidgets
+    - IPython
+    - pip:
+      - jupyterlab_latex
