@@ -4,5 +4,4 @@ matplotlib
 mpmath
 ipywidgets
 IPython
-texlive-core
 voila
