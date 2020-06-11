@@ -19,9 +19,9 @@ import mpmath
 mpmath.mp.dps = 15
 
 
-plt.rcParams['font.serif']='DejaVu Serif'
+plt.rcParams["font.serif"] = "DejaVu Serif"
 plt.rcParams["font.family"] = "serif"
-plt.rcParams['font.size'] = 22
+plt.rcParams["font.size"] = 22
 
 
 # Vectorize mpmath functions:
