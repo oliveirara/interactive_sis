@@ -14,12 +14,9 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 from matplotlib.ticker import MaxNLocator
 
-matplotlib.rc("text", usetex=True)
-matplotlib.rcParams["text.latex.preamble"] = [r"\usepackage{amsmath}"]
-
 import mpmath
 
-mpmath.mp.dps = 53
+mpmath.mp.dps = 15
 
 # Vectorize mpmath functions:
 
