@@ -18,6 +18,12 @@ import mpmath
 
 mpmath.mp.dps = 15
 
+
+plt.rcParams['font.serif']='DejaVu Serif'
+plt.rcParams["font.family"] = "serif"
+plt.rcParams['font.size'] = 22
+
+
 # Vectorize mpmath functions:
 
 vec_sqrt_mpmath = np.vectorize(mpmath.sqrt)
@@ -326,19 +332,19 @@ def plot(s, phi_s, e_s, R_0):
 
     fig, ax = plt.subplots(1, 2, figsize=(20, 9))
 
-    ax[0].set_title("Source Plane")
+    ax[0].set_title(r"Source Plane")
     ax[0].plot(xsource, ysource, "-", color="magenta")
     ax[0].plot(tpccx, tpccy, "-.", color="darkcyan")
     ax[0].set_xlabel(r"$y_1$")
     ax[0].set_ylabel(r"$y_2$")
     ax[0].relim()
     ax[0].autoscale_view()
-    ax[0].yaxis.set_major_formatter(FormatStrFormatter("$%.1f$"))
-    ax[0].xaxis.set_major_formatter(FormatStrFormatter("$%.1f$"))
+    ax[0].yaxis.set_major_formatter(FormatStrFormatter(r"$%.1f$"))
+    ax[0].xaxis.set_major_formatter(FormatStrFormatter(r"$%.1f$"))
     ax[0].xaxis.set_major_locator(plt.MaxNLocator(5))
     ax[0].yaxis.set_major_locator(plt.MaxNLocator(5))
 
-    ax[1].set_title("Lens Plane")
+    ax[1].set_title(r"Lens Plane")
     ax[1].plot(tcx, tcy, "--", color="black")
     ax[1].plot(xridge, yridge, "-", color="blue")
     ax[1].plot(xinner, yinner, ".", ms=0.2, color="green")
@@ -347,8 +353,8 @@ def plot(s, phi_s, e_s, R_0):
     ax[1].set_ylabel(r"$x_2$")
     ax[1].relim()
     ax[1].autoscale_view()
-    ax[1].yaxis.set_major_formatter(FormatStrFormatter("$%.1f$"))
-    ax[1].xaxis.set_major_formatter(FormatStrFormatter("$%.1f$"))
+    ax[1].yaxis.set_major_formatter(FormatStrFormatter(r"$%.1f$"))
+    ax[1].xaxis.set_major_formatter(FormatStrFormatter(r"$%.1f$"))
     ax[1].xaxis.set_major_locator(plt.MaxNLocator(5))
     ax[1].yaxis.set_major_locator(plt.MaxNLocator(5))
 
