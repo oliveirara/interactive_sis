@@ -16,7 +16,7 @@ from matplotlib.ticker import MaxNLocator
 
 import mpmath
 
-mpmath.mp.dps = 15
+mpmath.mp.dps = 10
 
 
 plt.rcParams["font.serif"] = "DejaVu Serif"
@@ -91,9 +91,7 @@ def source_curve(phi, s, phi_s, e_s, R_0):
 
 
 def tangential_pseudo_caustic_curve(phi):
-    u = -np.cos(phi)
-    v = -np.sin(phi)
-    return [u, v]
+    return [-np.cos(phi), -np.sin(phi)]
 
 
 # Angles:
