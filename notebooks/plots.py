@@ -18,6 +18,8 @@ import mpmath
 
 mpmath.mp.dps = 10
 
+from matplotlib import cm
+import lensdemo_funcs as ldf
 
 plt.rcParams["font.serif"] = "DejaVu Serif"
 plt.rcParams["font.family"] = "serif"
@@ -245,7 +247,7 @@ def phi_8(s, phi_s, e_s, R_0):
 #################
 
 
-def plot(s, phi_s, e_s, R_0):
+def plot(s, phi_s, e_s, R_0, g_amp=0.5):
 
     phi = np.arange(0, 2 * np.pi, 0.001)
 
@@ -328,6 +330,9 @@ def plot(s, phi_s, e_s, R_0):
     # Tangential Pseudo Caustic Curves
     tpccx, tpccy = tangential_pseudo_caustic_curve(phi)
 
+    # Gaussian blob:
+    gpar = np.array([g_amp, R_0, s, 0, np.sqrt((1 - e_s) / (1 + e_s)), -phi_s])
+
     fig, ax = plt.subplots(1, 2, figsize=(20, 9))
 
     ax[0].set_title(r"Source Plane")
@@ -355,6 +360,44 @@ def plot(s, phi_s, e_s, R_0):
     ax[1].xaxis.set_major_formatter(FormatStrFormatter(r"$%.1f$"))
     ax[1].xaxis.set_major_locator(plt.MaxNLocator(5))
     ax[1].yaxis.set_major_locator(plt.MaxNLocator(5))
+
+    ax_0_x_lim_left = ax[0].get_xlim()[0]
+    ax_0_x_lim_right = ax[0].get_xlim()[1]
+    ax_0_y_lim_botton = ax[0].get_ylim()[0]
+    ax_0_y_lim_top = ax[0].get_ylim()[1]
+
+    ax_1_x_lim_left = ax[1].get_xlim()[0]
+    ax_1_x_lim_right = ax[1].get_xlim()[1]
+    ax_1_y_lim_botton = ax[1].get_ylim()[0]
+    ax_1_y_lim_top = ax[1].get_ylim()[1]
+
+    # x and y grids:
+    x, y = np.meshgrid(np.linspace(-3, 3, 100), np.linspace(-3, 3, 50))
+
+    # Image calculations:
+    g_image = ldf.gauss_2d(x, y, gpar, e_s)
+    (xg, yg) = ldf.sie_grad(x, y, np.array([1.0, 0.0, 0.0, 1.0, 0.0]))
+    g_lensimage = ldf.gauss_2d(x - xg, y - yg, gpar, e_s)
+
+    ax[0].imshow(
+        g_image,
+        extent=[-3, 3, -3, 3],
+        interpolation="lanczos",
+        cmap="PuBuGn",
+        alpha=0.7,
+    )
+    ax[1].imshow(
+        g_lensimage,
+        extent=[-3, 3, -3, 3],
+        interpolation="lanczos",
+        cmap="PuBuGn",
+        alpha=0.7,
+    )
+
+    ax[0].set_xlim(ax_0_x_lim_left, ax_0_x_lim_right)
+    ax[0].set_ylim(ax_0_y_lim_botton, ax_0_y_lim_top)
+    ax[1].set_xlim(ax_1_x_lim_left, ax_1_x_lim_right)
+    ax[1].set_ylim(ax_1_y_lim_botton, ax_1_y_lim_top)
 
     if s >= R_0 / np.sqrt(1 - e_s * np.cos(2 * phi_s)):
         ax[1].plot(xridge_1, yridge_1, ".", ms=10, color="orange")
